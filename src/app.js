@@ -11,6 +11,5 @@ app.use(routerTransações)
 
 
 const PORTA = 5000
-app.listen(PORTA, () => console.log('servidor rodando legal'));
-
+app.listen(PORTA, () => console.log(`Servidor rodando na porta ${PORTA}`))
 
