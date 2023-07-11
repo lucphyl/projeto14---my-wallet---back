@@ -42,14 +42,9 @@ export async function signIN(request, response){
 }
 
 export async function logOUT(request, response){
-    const {authorization} = request.headers
-    const token = authorization?.replace("Bearer", "")
-    if (!token) return response.sendStatus(401)
-
+    const token = response.locals.session.token;
+    
     try{
-        const sessions = await db.collection("sessions").findOne({token})
-        if (!sessions) return  response.sendStatus(401)
-
         await db.collection ("sessions").deleteOne({token})
         response.sendStatus(200)
     } catch (error){
